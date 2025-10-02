@@ -39,8 +39,19 @@ const useHeroes = () => {
     }
   }
 
-  const addHero = (hero: Hero) => {
-    heroes.value.push(hero)
+  const addHero = (name: string) => {
+    let highestNumber = 0
+    for (const hero of heroes.value) {
+      if (hero.number > highestNumber) {
+        highestNumber = hero.number
+      }
+    }
+    const newHero: Hero = {
+      number: highestNumber + 1,
+      name,
+    }
+
+    heroes.value.push(newHero)
   }
   return {
     heroes,
